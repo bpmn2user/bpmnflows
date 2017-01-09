@@ -23,17 +23,20 @@ public class RuleEngineService {
 
 	protected static Logger log = Logger.getLogger(RuleEngineService.class.getName());
 	
-	
-	private final KieContainer kieContainer;
-	
-	
 	@Autowired
+	private  KieContainer kieContainer;
+	
+	//@Autowired
+	//private StatelessKieSession kieSession;
+	
+	
+/*	@Autowired
 	public RuleEngineService(KieContainer kieContainer){
 		
 		log.info("****************initializing rule engine kiecontainer");
 		this.kieContainer = kieContainer;
 		
-	}
+	}*/
 	
 	/*
 	 * Create a session with Policy and Driver facts and fire the rules
@@ -44,7 +47,7 @@ public class RuleEngineService {
     public int getBasePrice(Policy policy, Driver driver){
     	
     	
-    	StatelessKieSession kieSession = kieContainer.newStatelessKieSession("DecisionTableKS");
+    	StatelessKieSession kieSession = kieContainer.newStatelessKieSession();
      	List<Object> facts = new ArrayList<Object>();
     	facts.add(driver);
     	facts.add(policy);

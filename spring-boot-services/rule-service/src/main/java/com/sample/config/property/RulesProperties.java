@@ -6,17 +6,17 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix="rules.url")
+@ConfigurationProperties(prefix="rules.dir")
 public class RulesProperties {
 
 	@NotNull
-	private String rulesURL;
+	private String resourcePATH;
 
-	public String getRulesURL() {
-		return rulesURL;
+	public String getResourcePATH() {
+		return resourcePATH;
 	}
 
-	public void setRulesURL(String rulesURL) {
-		this.rulesURL = rulesURL;
+	public void setResourcePATH(String resourcePATH) {
+		this.resourcePATH = resourcePATH;
 	}
 }

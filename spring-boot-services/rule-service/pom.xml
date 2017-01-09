@@ -13,7 +13,7 @@
 	
 	<groupId>com.sample</groupId>
 	<artifactId>rulesrvice</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<!--  <version>0.0.1-SNAPSHOT</version> -->
 	<packaging>jar</packaging>
 
 	<name>rulesservice</name>
@@ -77,6 +77,7 @@
 			<groupId>org.drools</groupId>
 			<artifactId>drools-examples</artifactId>
 			<version>${kie.version}</version>
+			<!-- <scope>compile</scope> -->
 		</dependency>
 		<dependency>
 			<groupId>org.drools</groupId>
@@ -92,6 +93,7 @@
 			<groupId>org.drools</groupId>
 			<artifactId>drools-compiler</artifactId>
 			<version>${kie.version}</version>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.drools</groupId>
@@ -144,8 +146,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>20.0</version>
-		</dependency>
+			</dependency>
 		<dependency>
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-settings-builder</artifactId>
@@ -235,6 +236,38 @@
 	    
 	    </resources>
 		<plugins>
+		    <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>unpack</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>unpack</goal>
+                    </goals>
+                    <configuration>
+                        <artifactItems>
+                            <artifactItem>
+                                <groupId>org.drools</groupId>
+                                <artifactId>drools-examples</artifactId>
+                                <version>${kie.version}</version>
+                                <type>jar</type>
+                                
+                                 <overWrite>false</overWrite>
+				                   <outputDirectory>${project.build.directory}/classes</outputDirectory>
+				                   <destFileName>optional-new-name.jar</destFileName>
+				                   <includes>**/*.drl,**/*.xls</includes>
+				                   <excludes>**/*test.class</excludes>
+                                
+                                
+                               
+                            </artifactItem>
+                        </artifactItems>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
 			<plugin>
 		      <groupId>org.springframework.boot</groupId>
 		      <artifactId>spring-boot-maven-plugin</artifactId>
